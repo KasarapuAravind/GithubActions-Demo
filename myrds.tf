@@ -13,6 +13,7 @@ resource "aws_db_instance" "my-sqlserver-rds" {
   instance_class         = var.my_instance_class
   storage_type           = var.my_storage_type
   username               = "myuser"
+  password = "MotherLove"
   db_subnet_group_name   = aws_db_subnet_group.my_sbnet_grp.name
   vpc_security_group_ids = [aws_security_group.my-sqlserver-rds-sg.id]
   publicly_accessible    = var.publicly_accessible
@@ -48,5 +49,20 @@ resource "aws_db_parameter_group" "my-rds-pg" {
   parameter {
     name  = "event_scheduler"
     value = "ON"
+  }
+}
+
+data "aws_db_snapshot" "myrdsmysql_snpshot" {
+  db_instance_identifier = aws_db_instance.my-mysql-rds.id
+  most_recent            = true
+}
+
+resource "aws_db_instance" "my-mysql-rds-copy" {
+  instance_class      = "db.t2.micro"
+  name                = "my-mysql-rds-copy"
+  snapshot_identifier = data.aws_db_snapshot.myrdsmysql_snpshot.id
+
+  lifecycle {
+    ignore_changes = [snapshot_identifier]
   }
 }
