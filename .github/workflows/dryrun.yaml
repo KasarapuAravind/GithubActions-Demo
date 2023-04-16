@@ -40,14 +40,14 @@
         run: terraform validate
         continue-on-error: false
 
-      # - name: Terraform List
-      #   id: list
-      #   run: terraform state list
+      - name: Terraform List
+        id: list
+        run: terraform state list
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -var-file=variables/myvars.tfvars -no-color
-      #   continue-on-error: true
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -var-file=variables/myvars.tfvars -no-color
+        continue-on-error: true
     
       - name: Terraform apply s3
         id: s3create
