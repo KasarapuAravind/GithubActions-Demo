@@ -1,0 +1,3 @@
+ bucket = "aravindbucket004"
+ key    = "terraform.tfstate"
+ region = "us-east-1"

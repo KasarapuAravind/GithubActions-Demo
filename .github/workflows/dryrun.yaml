@@ -1,0 +1,54 @@
+  name: dryrun
+
+  on: 
+    push:
+    pull_request:
+      branches: [ "master"]
+      
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+  permissions:
+    id-token: write
+    contents: read
+  
+  jobs:
+    aravindserver-dryrun:
+      name: aravindserver dryrun
+      runs-on: ubuntu-latest
+      env: 
+        environment: aravindserver
+      steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@master
+    
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.6
+
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend-config="backends/aravindserver.s3.tfbackend"
+        continue-on-error: true
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt
+
+      - name: Terraform Validate
+        id: validation
+        run: terraform validate
+        continue-on-error: false
+
+      - name: Terraform List
+        id: list
+        run: terraform state list
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -var-file=variables/myvars.tfvars -no-color
+        continue-on-error: true
+
+      
+
+      
