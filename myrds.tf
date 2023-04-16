@@ -32,7 +32,7 @@ resource "aws_db_instance" "my-mysql-rds" {
   storage_type           = var.storage_type
   identifier             = "my-mysql-rds"
   username               = "myuser"
-  password               = "MotherLove@@556"
+  password               = "MotherLove"
   db_subnet_group_name   = aws_db_subnet_group.my_sbnet_grp.name
   vpc_security_group_ids = [aws_security_group.my-mysql-rds-sg.id]
   publicly_accessible    = var.publicly_accessible
