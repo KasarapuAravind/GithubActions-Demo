@@ -1,3 +1,4 @@
+#rds
 resource "aws_db_subnet_group" "my_sbnet_grp" {
   name       = "my subnet grp"
   subnet_ids = var.rds_subnets
