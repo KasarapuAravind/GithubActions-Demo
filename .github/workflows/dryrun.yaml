@@ -48,6 +48,11 @@
         id: plan
         run: terraform plan -var-file=variables/myvars.tfvars -no-color
         continue-on-error: true
+    
+      - name: Terraform apply s3
+        id: s3create
+        run: terraform apply -var-file=variables/myvars.tfvars -target="aws_security_group.my-sqlserver-rds-sg" -auto-approve
+        continue-on-error: false
 
       
 
