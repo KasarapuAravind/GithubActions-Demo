@@ -40,9 +40,9 @@
         run: terraform validate
         continue-on-error: false
 
-      - name: Terraform List
-        id: list
-        run: terraform state list
+      # - name: Terraform List
+      #   id: list
+      #   run: terraform state list
 
       - name: Terraform Plan
         id: plan
