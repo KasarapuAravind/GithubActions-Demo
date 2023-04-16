@@ -52,7 +52,7 @@ resource "aws_db_parameter_group" "my-rds-pg" {
   }
 }
 
-data "aws_db_snapshot" "myrdsmysql_snpshot" {
+data "aws_db_snapshot" "myrdsmysqlsnpshot" {
   db_instance_identifier = aws_db_instance.my-mysql-rds.id
   most_recent            = true
 }
@@ -60,7 +60,7 @@ data "aws_db_snapshot" "myrdsmysql_snpshot" {
 resource "aws_db_instance" "my-mysql-rds-copy" {
   instance_class      = "db.t2.micro"
   db_name                = "my-mysql-rds-copy"
-  snapshot_identifier = data.aws_db_snapshot.myrdsmysql_snpshot.id
+  snapshot_identifier = data.aws_db_snapshot.myrdsmysqlsnpshot.id
 
   lifecycle {
     ignore_changes = [snapshot_identifier]
