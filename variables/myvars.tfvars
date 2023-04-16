@@ -1,9 +1,9 @@
 my_vpc_id               = "vpc-0b224a55501509378"
 rds_subnets = ["subnet-0e9b0fbf7053d3ade", "subnet-026c05cdccd289170"]
-msws_rds_instance_class         = "db.t2.micro"
-msws_rds_storage_type           = "gp2"
-sre_portal_rds_instance_class         = "db.t2.micro"
-sre_portal_rds_storage_type          = "gp2"
+instance_class         = "db.t2.micro"
+storage_type           = "gp2"
+my_instance_class         = "db.t2.micro"
+my_storage_type          = "gp2"
 publicly_accessible    = true
 auto_minor_version_upgrade            = true  
 copy_tags_to_snapshot                 = false 
