@@ -59,7 +59,7 @@ data "aws_db_snapshot" "myrdsmysql_snpshot" {
 
 resource "aws_db_instance" "my-mysql-rds-copy" {
   instance_class      = "db.t2.micro"
-  name                = "my-mysql-rds-copy"
+  db_name                = "my-mysql-rds-copy"
   snapshot_identifier = data.aws_db_snapshot.myrdsmysql_snpshot.id
 
   lifecycle {
