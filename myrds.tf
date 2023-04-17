@@ -17,7 +17,7 @@ resource "aws_db_instance" "my-sqlserver-rds" {
   vpc_security_group_ids = [aws_security_group.my-sqlserver-rds-sg.id]
   publicly_accessible    = var.publicly_accessible
   skip_final_snapshot    = true
-  deletion_protection    = true
+  deletion_protection    = false
   auto_minor_version_upgrade            = var.auto_minor_version_upgrade  
   copy_tags_to_snapshot                 = var.copy_tags_to_snapshot
   timezone               = "UTC"
