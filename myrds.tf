@@ -4,7 +4,6 @@ resource "aws_db_subnet_group" "my_sbnet_grp" {
   subnet_ids = var.rds_subnets
 }
 
-
 resource "aws_db_instance" "my-sqlserver-rds" {
   allocated_storage      = 20
   engine                 = "sqlserver-ex"
@@ -52,9 +51,9 @@ resource "aws_db_parameter_group" "my-rds-pg" {
   }
 }
 
-data "aws_db_snapshot" "myrdsmysqlsnpshot" {
+resource "aws_db_snapshot" "myrdsmysqlsnpshot" {
   db_instance_identifier = aws_db_instance.my-mysql-rds.id
-  most_recent            = true
+  db_snapshot_identifier = "mysnpshot"
 }
 
 resource "aws_db_instance" "my-mysql-rds-copy" {
