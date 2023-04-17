@@ -59,7 +59,7 @@ resource "aws_db_snapshot" "testsnp" {
 resource "aws_db_instance" "my-mysql-rds-copy" {
   instance_class      = "db.t2.micro"
   db_name                = "my-mysql-rds-copy"
-  snapshot_identifier = data.aws_db_snapshot.testsnp.id
+  snapshot_identifier = aws_db_snapshot.testsnp.id
 
   lifecycle {
     ignore_changes = [snapshot_identifier]
