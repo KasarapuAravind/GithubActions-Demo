@@ -1,6 +1,11 @@
 #rds
-resource "aws_db_subnet_group" "my_sbnet_grp" {
-  name       = "my subnet grp"
+resource "aws_db_subnet_group" "sbnet_grp1_eks" {
+  name       = "sreportal-sbnet-eks"
+  subnet_ids = var.rds_subnets
+}
+
+resource "aws_db_subnet_group" "sbnet_grp2_eks" {
+  name       = "mswshc-sbnet-eks"
   subnet_ids = var.rds_subnets
 }
 
